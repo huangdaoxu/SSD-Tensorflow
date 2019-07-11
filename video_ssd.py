@@ -85,6 +85,15 @@ with tf.Session() as sess:
     # SSD default anchor boxes.
     ssd_anchors = ssd_net.anchors(net_shape)
 
+    # # read images
+    # img = cv2.imread("/Users/hdx/Desktop/IMG_1531.jpg")
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    # rclasses, rscores, rbboxes = process_image(sess, img, ssd_anchors)
+    # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    # img = cv2_bboxes(img, rclasses, rscores, rbboxes)
+    # cv2.imshow("demo", img)
+    # cv2.waitKey(0)
+
     # cap = cv2.VideoCapture(0)
     # while (cap.isOpened()):
     #     # Read the frame
@@ -92,18 +101,20 @@ with tf.Session() as sess:
     #     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     #     rclasses, rscores, rbboxes = process_image(sess, img, ssd_anchors)
     #     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-    #     cv2_bboxes(img, rclasses, rscores, rbboxes)
-    #
+    #     img = cv2_bboxes(img, rclasses, rscores, rbboxes)
+    #     cv2.imshow("demo", img)
     #     if cv2.waitKey(1) & 0xFF == ord('q'):
     #         break
+    #
+    # cap.release()
 
-    cap = cv2.VideoCapture("/Users/hdx/Desktop/sd1530970435_2.mp4")
+    cap = cv2.VideoCapture("/Users/hdx/Desktop/1562551881608587.mp4")
     fps = int(cap.get(cv2.CAP_PROP_FPS))
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
     fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-    out = cv2.VideoWriter('/Users/hdx/Desktop/output.mp4', fourcc, fps, (height, width))
+    out = cv2.VideoWriter('/Users/hdx/Desktop/1562551881608587_output.mp4', fourcc, fps, (height, width))
 
     success, img = cap.read()
     while success:
